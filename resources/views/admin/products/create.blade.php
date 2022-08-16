@@ -9,7 +9,7 @@
                             <h2> Yangi xarid qo'shing </h2>
                         </div>
                         <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('/home') }}"> Orqaga </a>
+                            <a class="btn btn-primary" href="{{ route('products.index') }}"> Orqaga </a>
                         </div>
                     </div>
                 </div>

@@ -36,7 +36,8 @@
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->title }}</td>
                                     <td>{{ $user->text }}</td>
-                                    <td>{{ $user->image }}</td>
+                                    <td><img src="{{ asset('images/'.$user->image) }}"
+                                             style="height: 100px; width: 150px;"></td>
                                     <td >
 
                                         <form action="{{ route('posts.destroy',$user->id) }}" method="POST">
@@ -55,8 +56,7 @@
 
                         @endforeach
                     </table>
-
-
+                    {{$posts->links()}}
                     <div class="container">
                         <div class="row justify-content-center">
 {{--                            @if ($data->links())--}}

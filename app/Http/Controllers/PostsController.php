@@ -14,7 +14,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts=Posts::orderByDesc('created_at')->paginate(10);
+        $posts=Posts::paginate(6);
+
+
         return  view('admin.posts.index',[
             'posts'=>$posts
         ]);
@@ -38,11 +40,11 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $posts = $request-> validate([
-            'title' =>'bail|required|min:3',
-            'text' =>'required',
-            'image' => 'required'
-        ]);
+//        $posts = $request-> validate([
+//            'title' =>'bail|required|min:3',
+//            'text' =>'required',
+//            'image' => 'required'
+//        ]);
 
 
 //        $posts = Posts::create($data);
@@ -50,20 +52,22 @@ class PostsController extends Controller
 //        dd($data);
         $posts = new Posts;
 
-        if ($posts->file('image')) {
-            $posts = $request->file('img');
-            $posts = time() . '.' . $file->getClientOriginalExtension();
-            $posts->move(public_path('images/'), $filename);
-            $posts['img'] = $filename;
+//        dd($posts);
+//        dd($request->file('image'));
+        if ($request->file('image')) {
+            $file = $request->image;
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images/'), $filename);
+            $posts['image'] = $filename;
         }
-        $posts -> title = $posts['title'];
-        $posts -> text = $posts['text'];
+        $posts->title = $request->title;
+        $posts->text = $request->text;
 
-        $posts -> save();
-        dd($posts);
+//        $posts->
+//        dd($posts);
 
-//        Posts::create($posts->paginate());
-        return redirect()->route('admin.posts.index');
+        $posts->save();
+        return redirect()->route('posts.index');
 
     }
 

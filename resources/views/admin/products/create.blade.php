@@ -9,14 +9,14 @@
                             <h2> Yangi xarid qo'shing </h2>
                         </div>
                         <div class="pull-right">
-                            <a class="btn btn-primary" href="{{ route('products.index') }}"> Orqaga </a>
+                            <a class="btn btn-primary" href="{{ route('/home') }}"> Orqaga </a>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="card-body">
 
-                <form action="{{route('products.store')}}" method="post">
+                <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
 

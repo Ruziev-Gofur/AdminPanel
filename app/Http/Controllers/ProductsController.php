@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Posts;
 use App\Models\Products;
 use Illuminate\Http\Request;
 
@@ -128,10 +129,10 @@ class ProductsController extends Controller
      * @param  \App\Models\Products  $products
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Products $products)
+    public function destroy($id)
     {
+        $products = Posts::find($id);
         $products->delete();
-
-        return redirect()->route('products.index');
+        return redirect()->route('products.index')->with('success','category created successfully');
     }
 }

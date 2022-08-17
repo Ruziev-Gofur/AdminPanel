@@ -16,7 +16,7 @@
             </div>
             <div class="card-body">
 
-                <form action="{{route('posts.update',$posts->id)}}" method="post">
+                <form action="{{route('posts.edit',$posts->id)}}" method="post">
 
                     @csrf
                     @method('PUT')
@@ -43,19 +43,17 @@
                             <div class="form-group">
                                 <label for="services">Surat</label>
                                 <input required="" type="file" name="image" class="form-control" id="file"
-                                       placeholder="Surat" value="{{$posts->image}}">
+                                       placeholder="Surat">
                             </div>
                         </div>
 
 
-                        <div>
-                            <lebel>Imege</lebel>
-                            <input type="file" name="image"  required>
-                        </div>
 
-                        @foreach($posts as $posts)
-                            <td><img height="200" width="200" src="/foodimage/{{$posts->image}}" ></td>
-                        @endforeach
+
+
+                            <td><img src="{{ asset('images/'.$posts->image) }}"
+                                     style="height: 100px; width: 150px;"></td>
+
 
 
                         <div class="col-xs-12 col-sm-12 col-md-12 text-center">

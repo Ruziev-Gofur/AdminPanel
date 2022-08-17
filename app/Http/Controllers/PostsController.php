@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Posts;
+use App\Models\Products;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -40,20 +41,9 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-//        $posts = $request-> validate([
-//            'title' =>'bail|required|min:3',
-//            'text' =>'required',
-//            'image' => 'required'
-//        ]);
 
-
-//        $posts = Posts::create($data);
-            //MySQL INSERT INTO;
-//        dd($data);
         $posts = new Posts;
 
-//        dd($posts);
-//        dd($request->file('image'));
         if ($request->file('image')) {
             $file = $request->image;
             $filename = time() . '.' . $file->getClientOriginalExtension();
@@ -63,8 +53,6 @@ class PostsController extends Controller
         $posts->title = $request->title;
         $posts->text = $request->text;
 
-//        $posts->
-//        dd($posts);
 
         $posts->save();
         return redirect()->route('posts.index');
@@ -88,14 +76,14 @@ class PostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Posts $posts)
+    public function edit($id)
     {
-//        $data = Posts::find();
-        $posts = Posts::all();
-//        dd($posts);
+
+        $posts = Posts::find($id);
+//dd($posts);
         return view('admin.posts.edit',[
-//            'posts'=>$data,
-            'post'=> $posts,
+
+            'posts'=> $posts,
         ]);
     }
 
@@ -106,9 +94,31 @@ class PostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Posts $posts)
+    public function update(Request $request, $id)
     {
 
+        $posts=$request->validate(
+            [
+
+                'title'=>'required',
+                'text'=>'required',
+                'image'=>'required'
+            ]
+        );
+        $posts=Posts::find($id);
+
+        $request = Posts::created($posts);
+
+
+
+        $posts=new Products();
+
+        $posts->title=$request->title;
+        $posts->text=$request->text;
+        $posts->image=$request->image;// hato
+        $posts->save();
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -117,10 +127,10 @@ class PostsController extends Controller
      * @param  \App\Models\Posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Posts $posts)
+    public function destroy($id)
     {
-//        $data = Posts::find();
-//        $data->delete();
-//        return redirect()->route('admin.posts.index');
+        $posts = Posts::find($id);
+        $posts->delete();
+        return redirect()->route('posts.index')->with('success','category created successfully');
     }
 }

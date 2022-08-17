@@ -42,7 +42,7 @@
 
                                         <form action="{{ route('posts.destroy',$user->id) }}" method="POST">
 
-                                            <a class="btn btn-primary" href="{{ route('posts.edit',$user->id) }}"><i
+                                            <a class="btn btn-primary" href="{{ route('posts.edit',['id'=>$user->id]) }}"><i
                                                     class="fa fa-pen"></i></a>
 
                                             @csrf
@@ -59,11 +59,6 @@
                     {{$posts->links()}}
                     <div class="container">
                         <div class="row justify-content-center">
-{{--                            @if ($data->links())--}}
-{{--                                <div class="mt-4 p-4 box has-text-centered">--}}
-{{--                                    {{ $data->links() }}--}}
-{{--                                </div>--}}
-{{--                            @endif--}}
                         </div>
                     </div>
                 </div>

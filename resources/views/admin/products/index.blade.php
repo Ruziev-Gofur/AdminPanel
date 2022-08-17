@@ -38,7 +38,6 @@
                                     <td>
                                         <a href="{{ route ('products.show', ['$products->id']) }}">{{ $user->name }}</a>
                                         </td>
-{{--                                    <td>{{ $user->name }}</td>--}}
                                     <td>{{ $user->type }}</td>
                                     <td>{{ $user->weight }}</td>
                                     <td>{{ $user->price }}</td>

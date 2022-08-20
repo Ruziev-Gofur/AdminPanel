@@ -24,4 +24,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('posts', \App\Http\Controllers\PostsController::class);
 Route::resource('products', \App\Http\Controllers\ProductsController::class);
 
+Route::get('mahsulot', [MahsulotController::class,'mahsulot']);
+
 

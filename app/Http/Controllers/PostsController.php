@@ -80,7 +80,7 @@ class PostsController extends Controller
     {
 
         $posts = Posts::find($id);
-//dd($posts);
+dd($posts);
         return view('admin.posts.edit',[
 
             'posts'=> $posts,

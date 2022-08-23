@@ -17,13 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('posts', \App\Http\Controllers\PostsController::class);
 Route::resource('products', \App\Http\Controllers\ProductsController::class);
 
-Route::get('mahsulot', [MahsulotController::class,'mahsulot']);
 
 
